@@ -21,18 +21,13 @@ Currently  is only to userAgent
         UC : /(uc)browser(?:.*version|)[\/]([\w.]+)/, //
         TAOBAO : /(tao|taobao)browser(?:.*version|)[\/]([\w.]+)/,
         LIEBAO : /(lb)browser(?:.*? rv:([\w.]+)|)/,
-<<<<<<< HEAD
-        
         //AMAYA:/(amaya)[\/]([\w.]+)/,
         //SEAMONKEY:/(seamonkey)[\/]([\w.]+)/,
         //OMNIWEB:/(omniweb)[\/]v([\w.]+)/,
         //FLOCK:/(flock)[\/]([\w.]+)/,
         //EPIPHANY:/(epiphany)[\/]([\w.]+)/,
-        
         MicroMessenger :/micromessenger/i,//
-        
-=======
->>>>>>> origin/master
+
         //engine
         WEBKIT : /webkit[\/]([\w.]+)/,
         GECKO : /gecko[\/]([\w.]+)/, //
@@ -110,8 +105,8 @@ Currently  is only to userAgent
                 os.trident = true;
             //device
             os['device'] = {};
+            //
             if (mac)
-<<<<<<< HEAD
                 os.mac = true, os['device']['name'] = 'mac os', os.version = mac[2];
             if (windows)
                 os.windows = true, os['device']['name'] = 'window', os.version = windows[2];
@@ -119,7 +114,6 @@ Currently  is only to userAgent
                 os.linux = true, os['device']['name'] = 'linux'; //
             if (chromeos)
                 os.chromeos = true, os['device']['name'] = 'chromeos', os.version = chromeos[2];
-            
             //if (ios) os.ios=true;//
             if (android)
                 os.android = true, os['device']['name'] = 'android', os.version = android[2];
@@ -135,42 +129,12 @@ Currently  is only to userAgent
                 os.blackberry = true, os['device']['name'] = 'blackberry', os.version = blackberry[2];
             if (bada)
                 os.bada = true, os['device']['name'] = 'bada',os.version = ''; //
-            
             if (rimtablet)
                 os.rimtablet = true, os['device']['name'] = 'rimtablet', os.version = ''; //
             if (touchpad)
                 os.touchpad = true, os['device']['name'] = 'touchpad',os.version = ''; //
             //os.device.version
             os['device']['version'] = os.version;
-=======
-                os.mac = true, os.device='mac', os.version = os['device-version'] = mac[2];
-            if (windows)
-                os.windows = true, os.device='windows', os.version = os['device-version'] = windows[2];
-            if (linux)
-                os.linux, os.device='linux'; //
-            if (chromeos)
-                os.chromeos = true, os.device='chromeos';
-            
-            //if (ios) os.ios=true;//
-            if (android)
-                os.android = true,os.device='android', os.version = os['device-version'] = android[2];
-            if (iphone)
-                os.ios = true, os.device='iphone', os.version = os['device-version'] = iphone[2].replace(/_/g, '.'), os.iphone = true;
-            if (ipad)
-                os.ios = true, os.device='ipad', os.version = os['device-version'] = ipad[2].replace(/_/g, '.'), os.ipad = true;
-            if (webos)
-                os.webos = true, os.device='webos', os.version = os['device-version'] = webos[2];
-            if (blackberry)
-                os.blackberry = true, os.device='blackberry', os.version = os['device-version'] = blackberry[2];
-            if (bada)
-                os.bada = true, os.device='bada', os.version = ''; //
-            
-            if (rimtablet)
-                os.rimtablet = true, os.device='rimtablet', os.version = ''; //
-            if (touchpad)
-                os.touchpad = true, os.device='touchpad', os.version = ''; //
->>>>>>> origin/master
-            
             if (!(android || iphone || ipad || ipod || webos || blackberry || bada || rimtablet || touchpad))
                 os.desktop = true, os.version = '';
             //browser
@@ -179,25 +143,19 @@ Currently  is only to userAgent
             match[1] = match[1] === 'crios' ? 'chrome' : match[1];
             //taobao
             match[1] = match[1] === 'tao' ? 'taobao' : match[1];
-            
+            //
             os[match[1]] = true;
             os['browser'] = match[1];
             os['version'] = match[2]||'';
-            
             //major
             os['version'] && (os['major'] = parseInt(os['version'],10));
             //revise
             //safari
             if (os.ios && os.webkit && !os.desktop) {
-<<<<<<< HEAD
                 try{
                     //in node js
                     os.safari = (window.canSetSearchEngine || window.TrackEvent) ? true : false;
                 }catch(e){}
-=======
-				v
-                os.safari = (window.canSetSearchEngine || window.TrackEvent) ? true : false;//TODO
->>>>>>> origin/master
                 var v=os['major']||parseInt(os['device-version'],10)||'';
                 v && (os['ios'+v]=true);
             }
@@ -207,7 +165,6 @@ Currently  is only to userAgent
                 os.msie=true;
                 delete os.mozilla;
             }
-            
             //mozilla/firefox
             if (os.mozilla) {
                 os.firefox = true;
@@ -217,30 +174,23 @@ Currently  is only to userAgent
                 os.browser = 'opera';
                 os.opera=os.opr;
             }
-<<<<<<< HEAD
-            
             //blackberry
             if(os.blackberry){
-                
+                //
                 delete os.safari;
             }
             //MicroMessager
             if(Exp_USERAGENT.MicroMessenger.test(ua)){
-                
+                //
                 os.micromessage=true;
             }
-=======
-
->>>>>>> origin/master
             //uc
             var DOMWindow = DOMWindow || {};
             if (DOMWindow && DOMWindow.UCNewsJSController) {
                 os.uc = true,
                 os.browser = 'uc';
             }
-            //orientation
-            os.orientation = (window.orientation === 180 || window.orientation === 0) ? 'portrait' : 'landscape';
-            
+            //
             try{
                 //orientation
                 os.orientation = (window.orientation === 180 || window.orientation === 0) ? 'portrait' : 'landscape';
@@ -251,10 +201,9 @@ Currently  is only to userAgent
             }else{
                 os.device['type']='mobile';
             }
-            
+            //
             return os;
         };
-        
         //navigator.userAgent.toLowerCase()
         return detect(navigator.userAgent.toLowerCase());
     });
